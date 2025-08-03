@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - FlexFive Home Care | Premium Home Care Liquid Products</title>
+    <meta name="description" content="Explore FlexFive's complete range of premium home care liquid products including laundry detergent, dish wash liquid, toilet cleaner, floor cleaner, and tyre polish.">
+    <meta name="keywords" content="home care products, laundry detergent liquid, dish wash liquid, toilet cleaner, floor cleaner, tyre polish, premium quality, export">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        /* Additional styles for Products page */
+        .page-hero {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, rgba(30, 144, 255, 0.1), rgba(168, 225, 12, 0.1));
+            text-align: center;
+        }
+        
+        .product-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .category-image {
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .category-card:hover .category-image img {
+            transform: scale(1.1);
+        }
+        
+        .category-icon {
+            font-size: 4rem;
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.8;
+        }
+        
+        .category-content {
+            padding: 2rem;
+        }
+        
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .category-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .product-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .product-features li {
+            padding: 0.3rem 0;
+            color: var(--text-light);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .product-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+        
+        .category-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+        
+        .view-details-btn {
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-green));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .view-details-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .product-badge {
+            background: var(--accent-green);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-tab {
+            padding: 12px 24px;
+            background: white;
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .filter-tab.active,
+        .filter-tab:hover {
+            background: var(--primary-blue);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .product-categories {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .category-footer {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+            
+            .view-details-btn {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">FF</div>
+                FlexFive
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About Us</a></li>
+                <li><a href="products.html" class="nav-link">Products</a></li>
+                <li><a href="why-us.html" class="nav-link">Why Choose Us</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <button class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="fade-in">Our Premium Product Range</h1>
+            <p class="hero-tagline fade-in">Complete Home Care Solutions for Every Need</p>
+            <p class="fade-in">Discover our comprehensive collection of premium home care liquid products designed for modern households.</p>
+        </div>
+    </section>
+
+    <!-- Filter Tabs -->
+    <section class="section">
+        <div class="container">
+            <div class="filter-tabs fade-in">
+                <button class="filter-tab active" data-filter="all">All Products</button>
+                <button class="filter-tab" data-filter="laundry">Laundry Care</button>
+                <button class="filter-tab" data-filter="kitchen">Kitchen Care</button>
+                <button class="filter-tab" data-filter="bathroom">Bathroom Care</button>
+                <button class="filter-tab" data-filter="floor">Floor Care</button>
+                <button class="filter-tab" data-filter="car">Car Care</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Categories -->
+    <section class="section">
+        <div class="container">
+            <div class="product-categories">
+                <!-- Laundry Detergent -->
+                <div class="category-card scale-in" data-category="laundry">
+                    <div class="category-image">
+                        <img src="images/laundry_detergent_1.jpg" alt="Laundry Detergent Liquid">
+                        <div class="category-icon">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">Laundry Detergent Liquid</h3>
+                        <p class="category-description">
+                            Premium concentrated laundry detergent that provides deep cleaning power while being gentle on fabrics and skin. 
+                            Perfect for all types of clothing and washing machines.
+                        </p>
+                        <ul class="product-features">
+                            <li>Deep cleaning formula</li>
+                            <li>Gentle on fabrics and skin</li>
+                            <li>Fresh fragrance</li>
+                            <li>Suitable for all washing machines</li>
+                            <li>Concentrated formula</li>
+                        </ul>
+                        <div class="category-footer">
+                            <span class="product-badge">Best Seller</span>
+                            <a href="products/laundry-liquid.html" class="view-details-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dish Wash Liquid -->
+                <div class="category-card scale-in" data-category="kitchen">
+                    <div class="category-image">
+                        <img src="images/dish_wash_1.jpg" alt="Dish Wash Liquid">
+                        <div class="category-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">Dish Wash Liquid</h3>
+                        <p class="category-description">
+                            Powerful grease-cutting dish wash liquid that removes tough stains and food residues while keeping your hands soft and moisturized.
+                        </p>
+                        <ul class="product-features">
+                            <li>Superior grease cutting power</li>
+                            <li>Gentle on hands</li>
+                            <li>Pleasant citrus fragrance</li>
+                            <li>Biodegradable formula</li>
+                            <li>Long-lasting suds</li>
+                        </ul>
+                        <div class="category-footer">
+                            <span class="product-badge">Eco-Friendly</span>
+                            <a href="products/dish-wash.html" class="view-details-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Toilet & Bathroom Cleaner -->
+                <div class="category-card scale-in" data-category="bathroom">
+                    <div class="category-image">
+                        <img src="images/home_care_products_1.jpg" alt="Toilet & Bathroom Cleaner">
+                        <div class="category-icon">
+                            <i class="fas fa-toilet"></i>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">Toilet & Bathroom Cleaner</h3>
+                        <p class="category-description">
+                            Advanced toilet and bathroom cleaner that eliminates 99.9% of germs and bacteria while removing tough stains and limescale buildup.
+                        </p>
+                        <ul class="product-features">
+                            <li>Kills 99.9% of germs</li>
+                            <li>Removes tough stains</li>
+                            <li>Anti-limescale formula</li>
+                            <li>Fresh fragrance</li>
+                            <li>Thick liquid formula</li>
+                        </ul>
+                        <div class="category-footer">
+                            <span class="product-badge">Germ Protection</span>
+                            <a href="products/toilet-cleaner.html" class="view-details-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Floor Cleaner -->
+                <div class="category-card scale-in" data-category="floor">
+                    <div class="category-image">
+                        <img src="images/home_care_products_2.jpg" alt="Floor Cleaner">
+                        <div class="category-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">Floor Cleaner</h3>
+                        <p class="category-description">
+                            Multi-surface floor cleaner suitable for all types of flooring including tiles, marble, wood, and laminate. Leaves floors sparkling clean.
+                        </p>
+                        <ul class="product-features">
+                            <li>Suitable for all floor types</li>
+                            <li>Streak-free shine</li>
+                            <li>Quick drying formula</li>
+                            <li>Pleasant fragrance</li>
+                            <li>Anti-bacterial properties</li>
+                        </ul>
+                        <div class="category-footer">
+                            <span class="product-badge">Multi-Surface</span>
+                            <a href="products/floor-cleaner.html" class="view-details-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tyre Polish -->
+                <div class="category-card scale-in" data-category="car">
+                    <div class="category-image">
+                        <img src="images/home_care_products_3.jpg" alt="Tyre Polish">
+                        <div class="category-icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">Tyre Polish</h3>
+                        <p class="category-description">
+                            Professional-grade tyre polish that restores the natural black shine of tyres while providing UV protection and long-lasting gloss.
+                        </p>
+                        <ul class="product-features">
+                            <li>Restores natural black shine</li>
+                            <li>UV protection</li>
+                            <li>Long-lasting gloss</li>
+                            <li>Water-resistant formula</li>
+                            <li>Easy application</li>
+                        </ul>
+                        <div class="category-footer">
+                            <span class="product-badge">Professional Grade</span>
+                            <a href="products/tyre-polish.html" class="view-details-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Glass Cleaner -->
+                <div class="category-card scale-in" data-category="bathroom">
+                    <div class="category-image">
+                        <img src="images/laundry_detergent_2.jpg" alt="Glass Cleaner">
+                        <div class="category-icon">
+                            <i class="fas fa-window-maximize"></i>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">Glass & Surface Cleaner</h3>
+                        <p class="category-description">
+                            Crystal clear glass and surface cleaner that removes fingerprints, smudges, and dirt from glass, mirrors, and shiny surfaces.
+                        </p>
+                        <ul class="product-features">
+                            <li>Streak-free cleaning</li>
+                            <li>Anti-static formula</li>
+                            <li>Quick evaporation</li>
+                            <li>Ammonia-free</li>
+                            <li>Pleasant fragrance</li>
+                        </ul>
+                        <div class="category-footer">
+                            <span class="product-badge">Streak-Free</span>
+                            <a href="products/glass-cleaner.html" class="view-details-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Sizes & Packaging -->
+    <section class="section" style="background: var(--light-gray);">
+        <div class="container">
+            <div class="section-title fade-in">
+                <div class="section-subtitle">Available Sizes</div>
+                <h2>Flexible Packaging Options</h2>
+                <p>Choose from various sizes to meet your specific needs, from household use to commercial applications.</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <span class="stat-number">500ml</span>
+                    <span class="stat-label">Household Size</span>
+                </div>
+                <div class="stat-item fade-in">
+                    <span class="stat-number">1L</span>
+                    <span class="stat-label">Family Size</span>
+                </div>
+                <div class="stat-item fade-in">
+                    <span class="stat-number">5L</span>
+                    <span class="stat-label">Bulk Size</span>
+                </div>
+                <div class="stat-item fade-in">
+                    <span class="stat-number">Custom</span>
+                    <span class="stat-label">OEM Packaging</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Export Information -->
+    <section class="section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <div class="section-subtitle">Export Ready</div>
+                    <h2>Global Quality Standards</h2>
+                    <p>
+                        All our products are manufactured to meet international quality standards and are export-ready 
+                        with proper documentation and certifications. We offer flexible packaging solutions and 
+                        private labeling options for our international partners.
+                    </p>
+                    <ul class="features-list">
+                        <li>Export-ready packaging and documentation</li>
+                        <li>Private labeling and OEM services</li>
+                        <li>Flexible minimum order quantities</li>
+                        <li>Competitive pricing for bulk orders</li>
+                        <li>Timely delivery and logistics support</li>
+                        <li>Complete product documentation and MSDS</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-primary">Request Quote</a>
+                </div>
+                <div class="about-image fade-in">
+                    <img src="images/laundry_detergent_3.jpg" alt="Export Ready Products">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section" style="background: var(--light-gray);">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Interested in Our Products?</h2>
+                <p>Contact us today to learn more about our product range, pricing, and partnership opportunities.</p>
+                <div style="margin-top: 2rem;">
+                    <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+                    <a href="#" class="btn btn-secondary">Download Catalog</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FlexFive Home Care</h3>
+                    <p>Premium home care liquid products manufacturer and exporter. Cleansing the world, one drop at a time.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="about.html">About Us</a></p>
+                    <p><a href="products.html">Products</a></p>
+                    <p><a href="why-us.html">Why Choose Us</a></p>
+                    <p><a href="contact.html">Contact</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Products</h3>
+                    <p><a href="products/laundry-liquid.html">Laundry Detergent</a></p>
+                    <p><a href="products/dish-wash.html">Dish Wash Liquid</a></p>
+                    <p><a href="products/toilet-cleaner.html">Toilet Cleaner</a></p>
+                    <p><a href="products/floor-cleaner.html">Floor Cleaner</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-envelope"></i> info@flexfivehomecare.com</p>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Mumbai, Maharashtra, India</p>
+                    <p><i class="fab fa-whatsapp"></i> WhatsApp: +91 98765 43210</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 FlexFive Home Care. All rights reserved. | Made in India</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Custom JavaScript -->
+    <script src="js/main.js"></script>
+    
+    <script>
+        // Product filtering
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterTabs = document.querySelectorAll('.filter-tab');
+            const productCards = document.querySelectorAll('.category-card');
+            
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Update active tab
+                    filterTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter products
+                    productCards.forEach(card => {
+                        const category = card.getAttribute('data-category');
+                        
+                        if (filter === 'all' || category === filter) {
+                            card.style.display = 'block';
+                            gsap.fromTo(card, 
+                                { opacity: 0, y: 30 }, 
+                                { opacity: 1, y: 0, duration: 0.5 }
+                            );
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

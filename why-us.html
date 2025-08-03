@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Choose Us - FlexFive Home Care | Global Quality Standards</title>
+    <meta name="description" content="Discover why FlexFive Home Care is the preferred choice for premium home care products. Global reach, high quality ingredients, eco-friendly formulas, and custom packaging services.">
+    <meta name="keywords" content="why choose FlexFive, global reach, quality ingredients, eco-friendly, custom packaging, OEM services, export quality">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        /* Additional styles for Why Us page */
+        .page-hero {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, rgba(30, 144, 255, 0.1), rgba(168, 225, 12, 0.1));
+            text-align: center;
+        }
+        
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .why-us-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .why-us-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-green));
+        }
+        
+        .why-us-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .why-us-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            position: relative;
+        }
+        
+        .why-us-icon::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid var(--primary-blue);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+        }
+        
+        .global-map {
+            background: var(--light-gray);
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .map-visualization {
+            width: 100%;
+            max-width: 800px;
+            margin: 2rem auto;
+            position: relative;
+            height: 400px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500"><rect width="1000" height="500" fill="%23f8f9fa"/><circle cx="200" cy="150" r="8" fill="%231E90FF"/><circle cx="500" cy="200" r="8" fill="%231E90FF"/><circle cx="750" cy="180" r="8" fill="%231E90FF"/><circle cx="300" cy="300" r="8" fill="%231E90FF"/><circle cx="650" cy="120" r="8" fill="%231E90FF"/><text x="500" y="250" text-anchor="middle" fill="%23666" font-family="Arial" font-size="24">Global Presence in 33+ Countries</text></svg>') center/contain no-repeat;
+            border-radius: 15px;
+        }
+        
+        .country-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .country-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .country-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .process-timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 3rem auto;
+        }
+        
+        .process-step {
+            display: flex;
+            align-items: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .process-step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .process-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            flex-shrink: 0;
+            margin: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .process-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            flex: 1;
+            max-width: 400px;
+        }
+        
+        .process-step::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 80px;
+            bottom: -40px;
+            width: 2px;
+            background: var(--primary-blue);
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+        
+        .process-step:last-child::before {
+            display: none;
+        }
+        
+        .competitive-advantages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .advantage-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+        
+        .advantage-item:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-5px);
+        }
+        
+        .advantage-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .process-step {
+                flex-direction: column !important;
+                text-align: center;
+            }
+            
+            .process-step::before {
+                display: none;
+            }
+            
+            .process-number {
+                margin: 1rem 0;
+            }
+            
+            .map-visualization {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">FF</div>
+                FlexFive
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About Us</a></li>
+                <li><a href="products.html" class="nav-link">Products</a></li>
+                <li><a href="why-us.html" class="nav-link">Why Choose Us</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <button class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="fade-in">Why Choose FlexFive?</h1>
+            <p class="hero-tagline fade-in">Your Trusted Partner for Premium Home Care Solutions</p>
+            <p class="fade-in">Discover what makes FlexFive the preferred choice for customers and partners worldwide.</p>
+        </div>
+    </section>
+
+    <!-- Main Advantages -->
+    <section class="section">
+        <div class="container">
+            <div class="why-us-grid">
+                <!-- <div class="why-us-card scale-in">
+                    <div class="why-us-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h3>Global Reach</h3>
+                    <p>
+                        With presence in 33+ countries worldwide, FlexFive has established a strong international 
+                        network of distributors and partners. Our products are trusted by customers across diverse 
+                        markets, from Asia-Pacific to Europe and the Americas.
+                    </p>
+                    <ul class="features-list">
+                        <li>Presence in 33+ countries</li>
+                        <li>1500+ distributors worldwide</li>
+                        <li>150,000+ retail outlets</li>
+                        <li>Multilingual customer support</li>
+                    </ul>
+                </div> -->
+                
+                <div class="why-us-card scale-in">
+                    <div class="why-us-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>High Quality Ingredients</h3>
+                    <p>
+                        We source only the finest raw materials and ingredients from certified suppliers. Our 
+                        formulations combine the best of nature and science to deliver superior cleaning performance 
+                        while being gentle on surfaces and skin.
+                    </p>
+                    <ul class="features-list">
+                        <li>Premium grade raw materials</li>
+                        <li>Certified supplier network</li>
+                        <li>Advanced formulation technology</li>
+                        <li>Rigorous quality testing</li>
+                    </ul>
+                </div>
+                
+                <div class="why-us-card scale-in">
+                    <div class="why-us-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Eco-Friendly Formulas</h3>
+                    <p>
+                        Environmental responsibility is at the core of our product development. Our eco-friendly 
+                        formulations are biodegradable, phosphate-free, and safe for the environment while 
+                        maintaining exceptional cleaning power.
+                    </p>
+                    <ul class="features-list">
+                        <li>Biodegradable ingredients</li>
+                        <li>Phosphate-free formulations</li>
+                        <li>Sustainable packaging options</li>
+                        <li>Environmental compliance</li>
+                    </ul>
+                </div>
+                
+                <div class="why-us-card scale-in">
+                    <div class="why-us-icon">
+                        <i class="fas fa-boxes"></i>
+                    </div>
+                    <h3>Custom Packaging & OEM</h3>
+                    <p>
+                        We offer comprehensive OEM and private labeling services with flexible packaging solutions. 
+                        From custom formulations to branded packaging, we help you create products that perfectly 
+                        match your market requirements.
+                    </p>
+                    <ul class="features-list">
+                        <li>Private labeling services</li>
+                        <li>Custom formulations</li>
+                        <li>Flexible packaging sizes</li>
+                        <li>Brand development support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Reach Map -->
+    <section class="section" style="background: var(--light-gray);">
+        <div class="container">
+            <div class="section-title fade-in">
+                <div class="section-subtitle">Global Presence</div>
+                <h2>Serving Customers Worldwide</h2>
+                <p>Our products reach customers across continents, bringing quality home care solutions to diverse markets.</p>
+            </div>
+            
+            <div class="global-map fade-in">
+                <div class="map-visualization"></div>
+                
+                <div class="country-list">
+                    <div class="country-item scale-in">🇮🇳 India</div>
+                    <div class="country-item scale-in">🇺🇸 United States</div>
+                    <div class="country-item scale-in">🇬🇧 United Kingdom</div>
+                    <div class="country-item scale-in">🇦🇪 UAE</div>
+                    <div class="country-item scale-in">🇸🇬 Singapore</div>
+                    <div class="country-item scale-in">🇲🇾 Malaysia</div>
+                    <div class="country-item scale-in">🇹🇭 Thailand</div>
+                    <div class="country-item scale-in">🇦🇺 Australia</div>
+                    <div class="country-item scale-in">🇨🇦 Canada</div>
+                    <div class="country-item scale-in">🇩🇪 Germany</div>
+                    <div class="country-item scale-in">🇫🇷 France</div>
+                    <div class="country-item scale-in">🌍 And 22+ More</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quality Process -->
+    <!-- <section class="section">
+        <div class="container">
+            <div class="section-title fade-in">
+                <div class="section-subtitle">Quality Assurance</div>
+                <h2>Our Quality Process</h2>
+                <p>Every product goes through our rigorous quality assurance process to ensure excellence.</p>
+            </div>
+            
+            <div class="process-timeline">
+                <div class="process-step fade-in">
+                    <div class="process-number">1</div>
+                    <div class="process-content">
+                        <h4>Raw Material Selection</h4>
+                        <p>We carefully select premium grade raw materials from certified suppliers, ensuring each ingredient meets our strict quality standards.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="process-number">2</div>
+                    <div class="process-content">
+                        <h4>Advanced Formulation</h4>
+                        <p>Our R&D team develops advanced formulations using cutting-edge technology to create products that are both effective and safe.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="process-number">3</div>
+                    <div class="process-content">
+                        <h4>Manufacturing Excellence</h4>
+                        <p>State-of-the-art manufacturing facilities with automated processes ensure consistent quality and optimal production efficiency.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="process-number">4</div>
+                    <div class="process-content">
+                        <h4>Quality Testing</h4>
+                        <p>Comprehensive testing at multiple stages including raw materials, in-process, and finished products to guarantee quality standards.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="process-number">5</div>
+                    <div class="process-content">
+                        <h4>Packaging & Distribution</h4>
+                        <p>Professional packaging with proper labeling and documentation, followed by efficient distribution through our global network.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Competitive Advantages -->
+    <section class="section" style="background: var(--light-gray);">
+        <div class="container">
+            <div class="section-title fade-in">
+                <div class="section-subtitle">Competitive Edge</div>
+                <h2>What Sets Us Apart</h2>
+                <p>Discover the unique advantages that make FlexFive the preferred choice in the home care industry.</p>
+            </div>
+            
+            <div class="competitive-advantages">
+                <div class="advantage-item scale-in">
+                    <div class="advantage-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h4>Fast Delivery</h4>
+                    <p>Efficient supply chain and logistics ensure timely delivery to customers worldwide.</p>
+                </div>
+                
+                <div class="advantage-item scale-in">
+                    <div class="advantage-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h4>Competitive Pricing</h4>
+                    <p>Optimal cost structure allows us to offer competitive prices without compromising quality.</p>
+                </div>
+                
+                <div class="advantage-item scale-in">
+                    <div class="advantage-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h4>Flexible Solutions</h4>
+                    <p>Customizable products and packaging to meet specific market and customer requirements.</p>
+                </div>
+                
+                <div class="advantage-item scale-in">
+                    <div class="advantage-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h4>24/7 Support</h4>
+                    <p>Dedicated customer support team available round the clock for assistance and queries.</p>
+                </div>
+                
+                <div class="advantage-item scale-in">
+                    <div class="advantage-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Quality Guarantee</h4>
+                    <p>100% quality guarantee with comprehensive product warranties and after-sales service.</p>
+                </div>
+                
+                <div class="advantage-item scale-in">
+                    <div class="advantage-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h4>Innovation Focus</h4>
+                    <p>Continuous R&D investment to develop innovative products and improve existing formulations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications & Standards -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title fade-in">
+                <div class="section-subtitle">Quality Standards</div>
+                <h2>Certifications & Compliance</h2>
+                <p>Our commitment to quality is validated by international certifications and compliance standards.</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <div class="stat-icon" style="font-size: 3rem; color: var(--primary-blue); margin-bottom: 1rem;">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <span class="stat-label">ISO 9001:2015 Certified</span>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-icon" style="font-size: 3rem; color: var(--primary-blue); margin-bottom: 1rem;">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <span class="stat-label">MSME Registered</span>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-icon" style="font-size: 3rem; color: var(--primary-blue); margin-bottom: 1rem;">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <span class="stat-label">Eco-Friendly Certified</span>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-icon" style="font-size: 3rem; color: var(--primary-blue); margin-bottom: 1rem;">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <span class="stat-label">Export Excellence Award</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Testimonials -->
+    <section class="section" style="background: var(--light-gray);">
+        <div class="container">
+            <div class="section-title fade-in">
+                <div class="section-subtitle">Customer Feedback</div>
+                <h2>What Our Partners Say</h2>
+                <p>Hear from our satisfied customers and partners around the world.</p>
+            </div>
+            
+            <div class="product-grid">
+                <div class="product-card scale-in">
+                    <div class="product-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p>"FlexFive has been our trusted partner for over 3 years. Their product quality and customer service are exceptional."</p>
+                    <h4>- Sarah Johnson, UK Distributor</h4>
+                </div>
+                
+                <div class="product-card scale-in">
+                    <div class="product-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p>"The eco-friendly formulations and competitive pricing make FlexFive our preferred supplier for home care products."</p>
+                    <h4>- Ahmed Al-Rashid, UAE Importer</h4>
+                </div>
+                
+                <div class="product-card scale-in">
+                    <div class="product-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p>"Excellent product quality and reliable delivery. FlexFive understands our market requirements perfectly."</p>
+                    <h4>- Maria Santos, Philippines Retailer</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Ready to Partner with FlexFive?</h2>
+                <p>Join thousands of satisfied customers worldwide who trust FlexFive for their home care needs.</p>
+                <div style="margin-top: 2rem;">
+                    <a href="contact.html" class="btn b2">Start Partnership</a>
+                    <a href="products.html" class="btn btn-secondary">View Products</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FlexFive Home Care</h3>
+                    <p>Premium home care liquid products manufacturer and exporter. Cleansing the world, one drop at a time.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="about.html">About Us</a></p>
+                    <p><a href="products.html">Products</a></p>
+                    <p><a href="why-us.html">Why Choose Us</a></p>
+                    <p><a href="contact.html">Contact</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Products</h3>
+                    <p><a href="products/laundry-liquid.html">Laundry Detergent</a></p>
+                    <p><a href="products/dish-wash.html">Dish Wash Liquid</a></p>
+                    <p><a href="products/toilet-cleaner.html">Toilet Cleaner</a></p>
+                    <p><a href="products/floor-cleaner.html">Floor Cleaner</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-envelope"></i> info@flexfivehomecare.com</p>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Mumbai, Maharashtra, India</p>
+                    <p><i class="fab fa-whatsapp"></i> WhatsApp: +91 98765 43210</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 FlexFive Home Care. All rights reserved. | Made in India</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Custom JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
+
